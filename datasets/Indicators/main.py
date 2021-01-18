@@ -3,14 +3,10 @@
 # coding: utf-8
 
 # imports
-import os
 import re
-import json
-import datetime
 
-import requests
 from gssutils import *
-from urllib.parse import urljoin
+from codelists import generate_codelists
 
 from modules import (csvs_to_pandas,
                      get_mapping_dicts,
@@ -35,6 +31,7 @@ POC3_urls = ['https://raw.githubusercontent.com/ONSdigital/sdg-data/develop/data
 
 # +
 cubes = Cubes("base_info.json")
+
 
 def entry_point(data_url):
 
@@ -69,6 +66,8 @@ def entry_point(data_url):
         cubes.add_cube(scraper, df, scraper.title, info_json_dict=mapping)
         
     cubes.output_all()
+
+    generate_codelists()
 
     return results
 
