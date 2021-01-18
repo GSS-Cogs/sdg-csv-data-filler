@@ -1,90 +1,98 @@
 https://raw.githubusercontent.com/ONSdigital/sdg-data/develop/data/indicator_11-7-1.csv:
   Year:
+    Pathify: false
     FILL_NA: Age_gap_filler_value
     "2019": year/2019
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
+    to: Period
   Country:
     FILL_NA: Great Britain
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   Observation status:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   Unit multiplier:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age 
-  Unit measure:   
+  Unit measure:
     FILL_NA: Age_gap_filler_value
     (%): (/%)
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
-  GeoCode:   
-    FILL_NA: Age_gap_filler_value
+  GeoCode:
+    Pathify: false
+    FILL_NA: ERROR
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   fill_gaps: true
-  fix_headers: false
+  fix_headers: true
   standardise_cells: true
   mapping:
+    Period:
+      parent: "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
+      value: "http://reference.data.gov.uk/id/year/{period}"
+      codelist: false
+#    Unit measure: false
+#    Observation status: false
+#    Unit multiplier: false
+#    GeoCode: false
     Value:
-        unit: "http://gss-data.org.uk/def/concept/measurement-units/deaths"
-        measure: "http://gss-data.org.uk/def/measure/count"
-        datatype: "integer"
+        unit: "http://gss-data.org.uk/def/concept/measurement-units/percent"
+        measure: "http://gss-data.org.uk/def/measure/area"
+        datatype: "decimal"
 https://raw.githubusercontent.com/ONSdigital/sdg-data/develop/data/indicator_16-9-1.csv:
   Year:
+    Pathify: false
     FILL_NA: Age_gap_filler_value
-    OldValue1: NewValue1
+    2010-2018: 2010-01-01T00:00:00/P8Y
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
+    to: Period
   Sex:
-    FILL_NA: Total
+    FILL_NA: All
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   Unit multiplier:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age 
-  Unit measure:   
+  Unit measure:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   Observation status:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
-  Value:   
+  Value:
     FILL_NA: Age_gap_filler_value
     OldValue1: NewValue1
     OldValue2: NewValue2
     OldValue3: NewValue3
-    to: correct_header_for_Age
   fill_gaps: true
-  fix_headers: false
+  fix_headers: true
   standardise_cells: true
   mapping:
+    Period:
+      parent: "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
+      value: "http://reference.data.gov.uk/id/gregorian-interval/{period}" # 2006-01-01T00:00:00/P3M
+      codelist: false
     Value:
-        unit: "http://gss-data.org.uk/def/concept/measurement-units/deaths"
-        measure: "http://gss-data.org.uk/def/measure/count"
-        datatype: "integer"
+        unit: "http://gss-data.org.uk/def/concept/measurement-units/percent"
+        measure: "http://gss-data.org.uk/def/measure/births"
+        datatype: "decimal"
+#    Unit measure: false
+#    Observation status: false
+#    Unit multiplier: false

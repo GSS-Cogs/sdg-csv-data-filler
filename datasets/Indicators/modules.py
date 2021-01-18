@@ -168,7 +168,8 @@ def write_csv(df, out_path, filename):
 
     return status
 
-def override_writer(df, overrides_dict):
+
+def override_writer(df: pd.DataFrame, overrides_dict):
     """Takes the data frame and makes column-specific replacements or
         overrides. If fix_headers is True (False is default), it will
         change the headers to name in the overides dict.
@@ -188,9 +189,7 @@ def override_writer(df, overrides_dict):
     fix_headers = overrides_dict['fix_headers']
     standardise_cells = overrides_dict['standardise_cells']
     fill_gaps = overrides_dict['fill_gaps']
-    if fix_headers:
-        #not used at the moment
-        pass
+
     if fill_gaps:
         for column in df.columns:
             if column in ['value','Value']:
@@ -204,17 +203,31 @@ def override_writer(df, overrides_dict):
         for column in df.columns:
             if column in ['value','Value']:
                 continue #skipping because Value is never a key in the dict
+            overrides = overrides_dict[column]
             orig_dtype = str(df[column].dtype)
             df[column] = df[column].astype(str)
-            df[column] = df[column].replace(to_replace=overrides_dict[column])
+            df[column] = df[column].replace(to_replace=overrides)
             #df[column] = df[column].astype(orig_dtype)
-            df[column] = df[column].map(lambda x: utils.pathify(x) if isinstance(x, str) else x)
-   
+            should_pathify = overrides.get("Pathify", True)
+            if should_pathify:
+                df[column] = df[column].map(lambda x: utils.pathify(x) if isinstance(x, str) else x)
+
+    if fix_headers:
+        column_mappings = dict()
+        for column_name in df.columns:
+            if column_name in ['value','Value']:
+                continue #skipping because Value is never a key in the dict
+            overrides = overrides_dict[column_name]
+            if "to" in overrides:
+                column_mappings[column_name] = overrides["to"]
+
+        df.rename(columns=column_mappings, inplace=True)
+
     return df
 
 
 # +
-def get_mapping_and_scraper(url, overrides_dict):
+def get_info_dict_and_scraper(url, overrides_dict):
     """
     Creates a scraper class with a default info.json using the url of the csv in question
         Where a mapping describing the concepts within the columns has been provided, 
@@ -297,5 +310,5 @@ def get_mapping_and_scraper(url, overrides_dict):
     # replacing ";" with "," in the list of keywords
     dataset.keyword = ",".join(metadata.get("data_keywords").split(";"))
     
-    return mapping, scraper
+    return info_dict, scraper
     

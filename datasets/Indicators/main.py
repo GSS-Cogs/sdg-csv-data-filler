@@ -10,7 +10,7 @@ from codelists import generate_codelists
 
 from modules import (csvs_to_pandas,
                      get_mapping_dicts,
-                     get_mapping_and_scraper,
+                     get_info_dict_and_scraper,
                      override_writer,
                      write_csv)
 
@@ -60,10 +60,10 @@ def entry_point(data_url):
         
         # Create a basic "Scraper" class to handle metadata
         # NOTE - also writes info.json to ./
-        mapping, scraper = get_mapping_and_scraper(url, overrides_dict)
+        info_dict, scraper = get_info_dict_and_scraper(url, overrides_dict)
         
         # Create a new cube with mapping
-        cubes.add_cube(scraper, df, scraper.title, info_json_dict=mapping)
+        cubes.add_cube(scraper, df, scraper.title, info_json_dict=info_dict)
         
     cubes.output_all()
 
