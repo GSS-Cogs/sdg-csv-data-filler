@@ -1,0 +1,18 @@
+{
+    "family": "SDG",
+    "github": "https://github.com/GSS-Cogs/sdg-csv-data-filler",
+    "project": "",
+    "githubcogs": "https://gss-cogs.github.io/sdg-csv-data-filler",
+    "jenkins": {
+        "base": "https://ci.floop.org.uk",
+        "path": [
+            "GSS_data",
+            "SDG"
+        ]
+    },
+    "sparql": "https://staging.gss-data.org.uk/sparql",
+    "pmd": "http://staging.gss-data.org.uk",
+    "pipelines": [
+        "Indicators"
+    ]
+}
