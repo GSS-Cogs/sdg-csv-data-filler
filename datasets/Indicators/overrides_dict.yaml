@@ -40,6 +40,10 @@ https://raw.githubusercontent.com/ONSdigital/sdg-data/develop/data/indicator_11-
       parent: "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
       value: "http://reference.data.gov.uk/id/year/{period}"
       codelist: false
+    Country:
+      label: "Country"
+      codelist: "http://gss-data.org.uk/def/sdg/concept-scheme/country"
+      value: "http://gss-data.org.uk/def/sdg/concept-scheme/country/{country}"
 #    Unit measure: false
 #    Observation status: false
 #    Unit multiplier: false
@@ -89,6 +93,10 @@ https://raw.githubusercontent.com/ONSdigital/sdg-data/develop/data/indicator_16-
       parent: "http://purl.org/linked-data/sdmx/2009/dimension#refPeriod"
       value: "http://reference.data.gov.uk/id/gregorian-interval/{period}" # 2006-01-01T00:00:00/P3M
       codelist: false
+    Sex:
+      label: "Sex"
+      codelist: "http://gss-data.org.uk/def/sdg/concept-scheme/sex"
+      value: "http://gss-data.org.uk/def/sdg/concept-scheme/sex/{sex}"
     Value:
         unit: "http://gss-data.org.uk/def/concept/measurement-units/percent"
         measure: "http://gss-data.org.uk/def/measure/births"
